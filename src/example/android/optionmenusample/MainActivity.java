@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,20 +30,25 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 //		 Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+//		getMenuInflater().inflate(R.menu.main, menu);
+		super.onCreateOptionsMenu(menu);
 
+		MenuItem item1 = menu.add(0,0,0, "item1");
+		item1.setIcon(android.R.drawable.ic_menu_compass);
+		MenuItem item2 = menu.add(0,1,0, "TEL");
+		item2.setIcon(android.R.drawable.ic_menu_compass);
+		MenuItem item3 = menu.add(0,2,0, "item3");
+		item3.setIcon(android.R.drawable.ic_menu_compass);
+		MenuItem item4 = menu.add(0,3,0, "item4");
+		item4.setIcon(android.R.drawable.ic_menu_compass);
+		MenuItem item5 = menu.add(0,4,0, "item5");
+		item5.setIcon(android.R.drawable.ic_menu_compass);
+		item5.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
-
-
-//		super.onCreateOptionsMenu(menu);
-//		MenuItem item1 = menu.add(0,0,0, "item1");
-//		item1.setIcon(android.R.drawable.ic_menu_compass);
-//		MenuItem item2 = menu.add(0,1,0, "item2");
-//		item2.setIcon(android.R.drawable.ic_menu_compass);
-//		MenuItem item3 = menu.add(0,2,0, "item3");
-//		item3.setIcon(android.R.drawable.ic_menu_compass);
-//		MenuItem item4 = menu.add(0,3,0, "item4");
-//		item4.setIcon(android.R.drawable.ic_menu_compass);
+		SubMenu item6 = menu.addSubMenu(0,5,0,"その他");
+		item6.setIcon(android.R.drawable.ic_menu_more);
+		item6.add(0,10,0,"sub1");
+		item6.add(0,20,0,"sub2");
 
 		return true;
 	}
@@ -51,41 +57,55 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch (item.getItemId()) {
-//		case 0:
+		case 0:
+			showDialog("メニューアイテム１を選択しました。");
+			return true;
+		case 1:
+			tel();
+//			showDialog("メニューアイテム電話を選択しました。");
+			return true;
+		case 2:
+			email();
+			showDialog("メニューアイテムEmailを選択しました。");
+			return true;
+		case 3:
+//			map();
+			showDialog("メニューアイテムマップを選択しました。");
+			return true;
+		case 4:
+//			map();
+			showDialog("メニューアイテム4を選択しました。");
+			return true;
+
+		case 10:
+			tel();
+//			showDialog("メニューアイテム10を選択しました。");
+			return true;
+		case 20:
+//			map();
+			showDialog("メニューアイテム20を選択しました。");
+			return true;
+
+			default:
+				return super.onOptionsItemSelected(item);
+
+//		case R.id.item1:
 ////			showDialog("メニューアイテム１を選択しました。");
 //			return true;
-//		case 1:
+//		case R.id.item2:
 //			tel();
 ////			showDialog("メニューアイテム電話を選択しました。");
 //			return true;
-//		case 2:
+//		case R.id.item3:
 //			email();
 ////			showDialog("メニューアイテムEmailを選択しました。");
 //			return true;
-//		case 3:
+//		case R.id.item4:
 //			map();
 ////			showDialog("メニューアイテムマップを選択しました。");
 //			return true;
 //			default:
 //				return super.onOptionsItemSelected(item);
-
-		case R.id.item1:
-//			showDialog("メニューアイテム１を選択しました。");
-			return true;
-		case R.id.item2:
-			tel();
-//			showDialog("メニューアイテム電話を選択しました。");
-			return true;
-		case R.id.item3:
-			email();
-//			showDialog("メニューアイテムEmailを選択しました。");
-			return true;
-		case R.id.item4:
-			map();
-//			showDialog("メニューアイテムマップを選択しました。");
-			return true;
-			default:
-				return super.onOptionsItemSelected(item);
 
 		}
 
@@ -96,13 +116,13 @@ public class MainActivity extends Activity {
 
 	private void tel() {
 		// TODO 自動生成されたメソッド・スタブ
-//		Intent telIntent = new Intent(android.content.Intent.ACTION_DIAL);
-//		startActivity(Intent.createChooser(telIntent, null));
+		Intent telIntent = new Intent(android.content.Intent.ACTION_DIAL);
+		startActivity(Intent.createChooser(telIntent, null));
 
-		String action = "android.intent.action.DIAL";
-		String contentStr = null;
-		Intent intent = new Intent(action, Uri.parse(contentStr));
-		startActivity(intent);
+//		String contentStr = null;
+//		String action = "android.intent.action.DIAL";
+//		Intent intent = new Intent(action);
+//		startActivity(intent);
 	}
 
 	private void email() {
